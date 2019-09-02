@@ -7,7 +7,14 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
+    
     use Sluggable;
+
+    const IS_DRAFT = 0;
+    const IS_PUBLIC = 1;
+    const IS_FEATURED = 1;
+    const IS_STANDART = 0;
+
 
     protected $fillable = ['title', 'content'];
 
@@ -97,13 +104,13 @@ class Post extends Model
 
     public function setDraft(){
 
-    	$this->status = 0;
+    	$this->status = Post::IS_DRAFT;
     	$this->save();
     }
 
     public function setPublic(){
 
-    	$this->status = 1;
+    	$this->status = Post::IS_PUBLIC;
     	$this->save();
     }
 
@@ -122,13 +129,13 @@ class Post extends Model
 
     public function setFeatured(){
 
-    	$this->is_featured = 1;
+    	$this->is_featured = Post::IS_FEATURED;
     	$this->save();
     }
 
     public function setStandart(){
 
-    	$this->is_featured = 0;
+    	$this->is_featured = Post::IS_STANDART;
     	$this->save();
     }
     public function toggleFeatured($value){
