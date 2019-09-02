@@ -19,6 +19,12 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    const IS_ADMIN = 1;
+    const IS_NORMAL = 0;
+    const IS_BANNED = 1;
+    const ACTIVE = 0;
+
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -46,4 +52,86 @@ class User extends Authenticatable
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+    public static function add($fields){
+        $user = new static;
+        $user->fill($fields);
+        $user->password = bcrypt($fields['password']);
+        $user->save();
+
+        return $user;
+
+    }
+     public function edit($fields){
+        $this->fill($fields);
+        $user->password = bcrypt($fields['password']);
+        $user->save();
+
+
+     }
+
+     public function remove(){
+        Storage::delete('uploads/' . $this->image);
+        $this->delete();
+     }
+
+     public function uploadAvatar($image){
+
+        if($image == null){return;}
+
+        Storage::delete('uploads/' . $this->image);
+
+        $filename = str_random(10) . '.' . $image->extension();
+        $image->saveAs('uploads', $filename);
+        $this->image = $filename;
+        $this->save();
+
+    }
+    public function getAvatar(){
+
+        if($this->image == null){
+            
+            return '/img/no-avatar.png';
+
+        }
+
+        return '/uploads/'. $this->image;
+    }
+
+    public function makeAdmin(){
+        $this->is_admin = User::IS_ADMIN;
+        $this->save();
+
+    }
+
+    public function makeNormal(){
+        $this->is_admin = User::IS_NORMAL;
+        $this->save();
+    }
+
+    public function toogleAdmin($value){
+        if($value == null){
+            return $this->makeNormal();
+
+        }
+        return $this->makeAdmin();
+    }
+
+    public function ban(){
+        $this->status = User::IS_BANNED;
+        $this->save();
+    }
+
+    public function unban(){
+        $this->status = User::ACTIVE:
+        $this->save();
+    }
+
+    public function toogleBan($value){
+        if($value == null){
+            return $this->unban();
+        }
+        return $this->ban();
+    }
+
 }
