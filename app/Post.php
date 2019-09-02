@@ -79,4 +79,21 @@ class Post extends Model
 
     }
 
+    public function setCategory($id){
+
+    	if($id == null){return;}
+    	$this->category_id = $id;
+    	$this->save();
+
+    }
+
+    public function setTags($ids){
+
+    	if($ids == null){return;}
+    	$this->tags()->sync($ids);
+    	
+
+
+    }
+
 }
