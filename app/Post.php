@@ -91,8 +91,32 @@ class Post extends Model
 
     	if($ids == null){return;}
     	$this->tags()->sync($ids);
-    	
 
+
+    }
+
+    public function setDraft(){
+
+    	$this->status = 0;
+    	$this->save();
+    }
+
+    public function setPublic(){
+
+    	$this->status = 1;
+    	$this->save();
+    }
+
+    public function toggleStatus($value){
+
+    	if($value == null){
+
+    		return $this->setDraft();
+    	}
+    	else
+    	{
+    		return $this->setPublic();
+    	}
 
     }
 
