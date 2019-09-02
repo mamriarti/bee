@@ -120,4 +120,29 @@ class Post extends Model
 
     }
 
+    public function setFeatured(){
+
+    	$this->is_featured = 1;
+    	$this->save();
+    }
+
+    public function setStandart(){
+
+    	$this->is_featured = 0;
+    	$this->save();
+    }
+    public function toggleFeatured($value){
+
+    	if($value == null){
+
+    		return $this->setStandart();
+    	}
+    	else
+    	{
+    		return $this->setFeatured();
+    	}
+
+    }
+
+
 }
