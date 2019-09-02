@@ -86,6 +86,17 @@ class Post extends Model
 
     }
 
+    public function getImage(){
+
+    	if($this->image == null){
+    		
+    		return '/img/no-image.png';
+
+    	}
+
+    	return '/uploads/'. $this->image;
+    }
+
     public function setCategory($id){
 
     	if($id == null){return;}
@@ -150,6 +161,8 @@ class Post extends Model
     	}
 
     }
+
+
 
 
 }
