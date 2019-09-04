@@ -123,7 +123,7 @@ class User extends Authenticatable
     }
 
     public function unban(){
-        $this->status = User::ACTIVE:
+        $this->status = User::ACTIVE;
         $this->save();
     }
 
