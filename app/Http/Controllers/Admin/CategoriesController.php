@@ -8,6 +8,8 @@ Use App\Category;
 
 
 
+
+
 class CategoriesController extends Controller
 {
     /**
@@ -28,7 +30,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**

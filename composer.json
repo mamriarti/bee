@@ -14,6 +14,7 @@
         "jeroennoten/laravel-adminlte": "^1.27",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "laravelcollective/html": "^5.4.0",
         "laravelcollective/remote": "^5.8"
     },
     "require-dev": {

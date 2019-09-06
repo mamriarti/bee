@@ -18,12 +18,18 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+
+            <div class="form-group">
+            	<a href="{{route('categories.create')}}" class="btn btn-success">Добавить</a>
+            </div>
+            
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>ID</th>
                   <th>Название</th>
-                  <th>Действия</th>
+                  <th>Редактировать</th>
+                  <th>Удалить</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -35,9 +41,12 @@
                   </td>
                   <td>
                   <a href="#"  class="fas fa-edit"></a>
-                  <span></span><span></span>
-                  <a href="#" class="far fa-trash-alt"></a>
-                  </td>
+                 </td>
+                 <td>
+                 	<a href="#" class="far fa-trash-alt"></a>
+                 </td>
+                  
+                  
                 </tr>
                 @endforeach
                
@@ -48,8 +57,8 @@
                 <tr>
                    <th>ID</th>
                   <th>Название</th>
-                  <th>Действия</th>
-                  
+                  <th>Редактировать</th>
+                  <th>Удалить</th>
                 </tr>
                 </tfoot>
               </table>

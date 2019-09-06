@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'collapse_sidebar' => true,
+    'collapse_sidebar' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -163,6 +163,10 @@ return [
                 [
                     'text' => 'Список Категорий',
                     'url'     => 'admin/categories',
+                ],
+                [
+                    'text' => 'Добавит Категорию',
+                    'url'     => 'admin/categories/create',
                 ],
                 [
                     'text'    => 'level_one',
