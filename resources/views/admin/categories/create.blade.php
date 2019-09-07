@@ -8,13 +8,49 @@
 
 @section('content')
    <div class="box">
-{!! Form::open(['url' => 'foo/bar']) !!}
-    //
-{!! Form::close() !!}
-   	@section('css')
-	
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-@stop
+
+			{!! Form::open(['route' => 'categories.store']) !!}
+			{!! Form::token() !!}
+			<div class="box-header with border">
+				<h3 class="box-title">
+					Добавляем Категорию
+				</h3>
+			</div>
+			<div class="box-body">
+				<div class="col-md-6">
+					@if($errors->any())
+						<div>
+							@foreach($errors->all() as $error)
+								<div class="alert alert-danger" role="alert">
+									{{ $error  }}
+								</div>
+							@endforeach
+						</div>
+					@endif
+					<div class="form-group">
+						<label for="title">Название</label>
+
+	                   <input type="text" class="form-control" id="title" placeholder="Название категории" name="title" value="" >
+		                  <div class="invalid-feedback">
+		                  	Данное Поле Должно Быть Заполнено
+		                  </div>
+					</div>
+
+				</div>	
+				
+			</div>
+	   <div class="box-footer">
+		   <hr class="mb-4">
+
+			   <button class="btn btn-default">
+				   Назад
+			   </button>
+
+
+		   <button class="btn btn-success pull-right" type="submit">Добавить Категорию</button>
+	   </div>
+
+			{!! Form::close() !!}
    </div>
 
    

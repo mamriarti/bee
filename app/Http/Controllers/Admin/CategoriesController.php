@@ -41,7 +41,11 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+        ]);
+        Category::create($request->all());
+        return redirect()->route('categories.index');
     }
 
     /**
