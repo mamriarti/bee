@@ -165,9 +165,10 @@ return [
                     'url'     => 'admin/categories',
                 ],
                 [
-                    'text' => 'Добавит Категорию',
+                    'text' => 'Добавить Категорию',
                     'url'     => 'admin/categories/create',
                 ],
+                
                 [
                     'text'    => 'level_one',
                     'url'     => '#',

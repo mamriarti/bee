@@ -40,7 +40,7 @@
                   <td>{{$category->title}}
                   </td>
                   <td>
-                  <a href="#"  class="fas fa-edit"></a>
+                  <a href="{{route('categories.edit', $category->id)}}"  class="fas fa-edit"></a>
                  </td>
                  <td>
                  	<a href="#" class="far fa-trash-alt"></a>
