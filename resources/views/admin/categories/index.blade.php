@@ -43,7 +43,11 @@
                   <a href="{{route('categories.edit', $category->id)}}"  class="fas fa-edit"></a>
                  </td>
                  <td>
-                 	<a href="#" class="far fa-trash-alt"></a>
+                   {{ Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'delete' ]) }}
+                  <button onclick="return confirm('А вы уверены?')" type="submit" class="btn btn-danger">
+                 	<i class="fas fa-trash"></i>
+                   </button>
+                   {{ Form::close() }}
                  </td>
                   
                   
