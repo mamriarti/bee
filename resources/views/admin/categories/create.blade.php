@@ -35,7 +35,7 @@
 		   <hr class="mb-4">
 
 			   <button class="btn btn-default">
-				   Назад
+				  <a href="{{route('categories.index')}}">Назад</a>
 			   </button>
 
 
