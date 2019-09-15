@@ -22,5 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
     Route::resource('/categories', 'CategoriesController');
+    Route::resource('/tags', 'TagsController');
 
 });
