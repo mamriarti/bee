@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Tag;
 
 class TagsController extends Controller
 {
@@ -14,7 +15,8 @@ class TagsController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        return view('admin.tags.index')->with('tags',$tags);
     }
 
     /**

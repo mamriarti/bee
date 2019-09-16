@@ -157,6 +157,24 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
+            'text' => 'Теги',
+            'icon' => 'fas fa-fw fa-tags',
+            'submenu' => [
+                [
+                    'text' => 'Список Тегов',
+                    'url'  => 'admin/tags',
+                    'icon' => 'fas fa-fw fa-hashtag'
+                ],
+                [
+                    'text' => 'Добавить Тегов',
+                    'url'  => 'admin/tags/create',
+                    'icon' => 'fas fa-fw fa-tag'
+
+                ],
+
+            ],
+        ],
+        [
             'text'    => 'Категории',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -168,7 +186,7 @@ return [
                     'text' => 'Добавить Категорию',
                     'url'     => 'admin/categories/create',
                 ],
-                
+
                 [
                     'text'    => 'level_one',
                     'url'     => '#',
@@ -193,12 +211,14 @@ return [
                         ],
                     ],
                 ],
+
                 [
                     'text' => 'level_one',
                     'url'  => '#',
                 ],
             ],
         ],
+
         ['header' => 'labels'],
         [
             'text'       => 'important',
@@ -213,6 +233,7 @@ return [
             'icon_color' => 'aqua',
         ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
