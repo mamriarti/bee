@@ -43,7 +43,7 @@
                                         <a href="{{route('tags.edit', $tag->id)}}"  class="fas fa-edit"></a>
                                     </td>
                                     <td>
-                                        {{ Form::open(['route' => ['tags.destroy', $category->id], 'method' => 'delete' ]) }}
+                                        {{ Form::open(['route' => ['tags.destroy', $tag->id], 'method' => 'delete' ]) }}
                                         <button onclick="return confirm('А вы уверены?')" type="submit" class="btn btn-danger">
                                             <i class="fas fa-trash"></i>
                                         </button>
