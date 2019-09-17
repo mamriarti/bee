@@ -38,7 +38,7 @@ class TagsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|unique:tags',
         ]);
         Tag::create($request->all());
         return redirect()->route('tags.index');
@@ -77,7 +77,7 @@ class TagsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|unique:tags',
         ]);
         $tag = Tag::find($id);
         $tag->update($request->all());

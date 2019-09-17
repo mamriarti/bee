@@ -42,7 +42,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|unique:categories',
         ]);
         Category::create($request->all());
         return redirect()->route('categories.index');
@@ -81,7 +81,7 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|unique:categories',
         ]);
         $category = Category::find($id);
         $category->update($request->all());
