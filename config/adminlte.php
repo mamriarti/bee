@@ -174,6 +174,22 @@ return [
 
             ],
         ],
+          [ 'text' => 'Пользователи',
+            'icon' => 'fas fa-fw fa-user-check',
+             'submenu' =>[
+                 [
+                     'text' => 'Список Пользователей',
+                     'url' => 'admin/users',
+                     'icon' => 'fas fa-fw fa-users'
+                 ],
+                 [
+                     'text' => 'Добавить Пользователя',
+                     'url' => 'admin/users/create',
+                     'icon' => 'fas fa-fw fa-user-plus'
+                 ],
+             ] ,
+
+         ],
         [
             'text'    => 'Категории',
             'icon'    => 'fas fa-fw fa-share',
