@@ -26,7 +26,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -37,7 +37,15 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:users',
+            'email'=> 'required|email|unique:users',
+            'password' => 'required',
+            'avatar' =>'nullable|image',
+        ]);
+
+        User::add($request->all());
+        return redirect()->route('users.index');
     }
 
     /**

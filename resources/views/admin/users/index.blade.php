@@ -4,7 +4,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Категории</h1>
+    <h1>Пользователи</h1>
 @stop
 
 @section('content')
