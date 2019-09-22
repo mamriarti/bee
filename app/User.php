@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use \Storage;
 
 class User extends Authenticatable
 {
@@ -78,12 +79,15 @@ class User extends Authenticatable
      public function uploadAvatar($image){
 
         if($image == null){return;}
+        if($this->avatar =! null)
+        {
+            Storage::delete('uploads/' . $this->avatar);
+        }
 
-        Storage::delete('uploads/' . $this->image);
 
         $filename = str_random(10) . '.' . $image->extension();
-        $image->saveAs('uploads', $filename);
-        $this->image = $filename;
+        $image->storeAs('uploads', $filename);
+        $this->avatar = $filename;
         $this->save();
 
     }

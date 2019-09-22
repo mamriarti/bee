@@ -44,7 +44,9 @@ class UsersController extends Controller
             'avatar' =>'nullable|image',
         ]);
 
-        User::add($request->all());
+        $user = User::add($request->all());
+        $user->uploadAvatar($request->file('avatar'));
+
         return redirect()->route('users.index');
     }
 
