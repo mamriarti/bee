@@ -93,13 +93,13 @@ class User extends Authenticatable
     }
     public function getAvatar(){
 
-        if($this->image == null){
+        if($this->avatar == null){
             
-            return '/img/no-avatar.png';
+            return '/uploads/avatar.png';
 
         }
 
-        return '/uploads/'. $this->image;
+        return '/uploads/'. $this->avatar;
     }
 
     public function makeAdmin(){
