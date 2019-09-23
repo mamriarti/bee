@@ -69,7 +69,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find('id');
+        $user = User::find($id);
         return view('admin.users.edit', compact('user'));
     }
 
@@ -82,7 +82,12 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:users',
+        ]);
+        $user = User::find($id);
+        $user->update($request->all());
+        return redirect()->route('users.index');
     }
 
     /**
