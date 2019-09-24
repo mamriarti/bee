@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email',
     ];
 
     const IS_ADMIN = 1;
@@ -57,7 +57,7 @@ class User extends Authenticatable
     public static function add($fields){
         $user = new static;
         $user->fill($fields);
-        $user->password = bcrypt($fields['password']);
+//        $user->password = bcrypt($fields['password']);
         $user->save();
 
         return $user;
@@ -65,8 +65,9 @@ class User extends Authenticatable
     }
      public function edit($fields){
         $this->fill($fields);
-        $user->password = bcrypt($fields['password']);
-        $user->save();
+
+
+        $this->save();
 
 
      }
@@ -138,4 +139,12 @@ class User extends Authenticatable
         return $this->ban();
     }
 
+    public function generatePassword($password){
+        if($password =! null)
+        {
+            $this->password = bcrypt($password);
+            $this->save();
+        }
+
+    }
 }

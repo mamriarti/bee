@@ -45,6 +45,7 @@
 
                 <div class="form-group">
                     <label for="title">Аватар</label>
+                    <img src="{{$user->getAvatar()}}" alt="" class="img-responsive" width="150">
 
                     <input type="file" class="form-control-file" id="avatar" placeholder="Аватар Пользователя" name="avatar" value="" >
                 </div>

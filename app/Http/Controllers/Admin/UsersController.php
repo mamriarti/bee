@@ -45,6 +45,7 @@ class UsersController extends Controller
         ]);
 
         $user = User::add($request->all());
+        $user->generatePassword($request->get('password'));
         $user->uploadAvatar($request->file('avatar'));
 
         return redirect()->route('users.index');
@@ -83,10 +84,14 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|unique:users',
+            'name' => 'required',
+            'email' => 'required|email',
+            'avatar' => 'nullable|image',
         ]);
         $user = User::find($id);
-        $user->update($request->all());
+        $user->edit($request->all());
+        $user->generatePassword($request->get('password'));
+        $user->uploadAvatar($request->file('avatar'));
         return redirect()->route('users.index');
     }
 
