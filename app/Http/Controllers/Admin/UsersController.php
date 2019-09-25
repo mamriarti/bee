@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\User;
+
 
 class UsersController extends Controller
 {
@@ -83,9 +85,16 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
+        
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($user->id),
+            ],
+
             'avatar' => 'nullable|image',
         ]);
         $user = User::find($id);

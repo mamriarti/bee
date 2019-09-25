@@ -96,7 +96,7 @@ class User extends Authenticatable
 
         if($this->avatar == null){
             
-            return '/uploads/avatar.png';
+            return '/img/avatar.png';
 
         }
 
