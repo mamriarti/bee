@@ -86,7 +86,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        
+
         $this->validate($request, [
             'name' => 'required',
             'email' => [
@@ -112,6 +112,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id)->remove();
+        return redirect()->route('users.index');
     }
 }

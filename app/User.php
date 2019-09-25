@@ -64,34 +64,38 @@ class User extends Authenticatable
 
     }
      public function edit($fields){
+
         $this->fill($fields);
-
-
         $this->save();
 
 
      }
 
+
      public function remove(){
-        Storage::delete('uploads/' . $this->image);
-        $this->delete();
+
+         $this->removeAvatar();
+         $this->delete();
      }
 
      public function uploadAvatar($image){
 
-        if($image == null){return;}
-        if($this->avatar =! null)
-        {
-            Storage::delete('uploads/' . $this->avatar);
-        }
-
-
+        if($image == null) {return;}
+        $this->removeAvatar();
         $filename = str_random(10) . '.' . $image->extension();
         $image->storeAs('uploads', $filename);
         $this->avatar = $filename;
         $this->save();
 
     }
+    public function removeAvatar()
+    {
+        if($this->avatar != null)
+        {
+            Storage::delete('uploads/' . $this->avatar);
+        }
+    }
+
     public function getAvatar(){
 
         if($this->avatar == null){
