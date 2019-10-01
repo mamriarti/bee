@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use \Storage;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email',
     ];
 
     const IS_ADMIN = 1;
@@ -56,46 +57,54 @@ class User extends Authenticatable
     public static function add($fields){
         $user = new static;
         $user->fill($fields);
-        $user->password = bcrypt($fields['password']);
+//        $user->password = bcrypt($fields['password']);
         $user->save();
 
         return $user;
 
     }
      public function edit($fields){
+
         $this->fill($fields);
-        $user->password = bcrypt($fields['password']);
-        $user->save();
+        $this->save();
 
 
      }
 
+
      public function remove(){
-        Storage::delete('uploads/' . $this->image);
-        $this->delete();
+
+         $this->removeAvatar();
+         $this->delete();
      }
 
      public function uploadAvatar($image){
 
-        if($image == null){return;}
-
-        Storage::delete('uploads/' . $this->image);
-
+        if($image == null) {return;}
+        $this->removeAvatar();
         $filename = str_random(10) . '.' . $image->extension();
-        $image->saveAs('uploads', $filename);
-        $this->image = $filename;
+        $image->storeAs('uploads', $filename);
+        $this->avatar = $filename;
         $this->save();
 
     }
+    public function removeAvatar()
+    {
+        if($this->avatar != null)
+        {
+            Storage::delete('uploads/' . $this->avatar);
+        }
+    }
+
     public function getAvatar(){
 
-        if($this->image == null){
+        if($this->avatar == null){
             
-            return '/img/no-avatar.png';
+            return '/img/avatar.png';
 
         }
 
-        return '/uploads/'. $this->image;
+        return '/uploads/'. $this->avatar;
     }
 
     public function makeAdmin(){
@@ -134,4 +143,12 @@ class User extends Authenticatable
         return $this->ban();
     }
 
+    public function generatePassword($password){
+        if($password =! null)
+        {
+            $this->password = bcrypt($password);
+            $this->save();
+        }
+
+    }
 }

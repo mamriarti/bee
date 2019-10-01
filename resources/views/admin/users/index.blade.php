@@ -4,7 +4,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Категории</h1>
+    <h1>Пользователи</h1>
 @stop
 
 @section('content')
@@ -45,7 +45,7 @@
                                         {{$user->email}}
                                     </td>
                                     <td>
-                                        <img src="{{$user->getAvatar()}}" alt="" class="img-responsive" width="150">
+                                        <img src="{{$user->getAvatar()}}" alt="" class="img-responsive" width="50">
                                     </td>
                                     <td>
                                         <a href="{{route('users.edit', $user->id)}}"  class="fas fa-edit"></a>

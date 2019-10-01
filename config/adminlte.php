@@ -157,6 +157,25 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
+            'text' => 'Посты',
+            'icon' => 'fas fa-fw fa-book-open',
+            'submenu' => [
+                [
+                    'text' => 'Список Постов',
+                    'url' => 'admin/posts',
+                    'icon' => 'fas fa-fw fa-book-open',
+                ],
+                [
+                    'text' => 'Список Постов',
+                    'url' => 'admin/posts/create',
+                    'icon' => 'fas fa-fw fa-book-open',
+
+                ]
+
+            ],
+        ],
+
+        [
             'text' => 'Теги',
             'icon' => 'fas fa-fw fa-tags',
             'submenu' => [
